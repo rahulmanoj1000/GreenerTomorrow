@@ -1,0 +1,148 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'table.css' %}">
+
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 80%;
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid black;
+      }
+
+      th,
+      td {
+        padding: 10px;
+        text-align: left;
+      }
+    </style>
+  </head>
+  <body>
+    {% if user.is_authenticated %}
+    <nav class="navbar navbar-light bg-light  p-1 shadow" style="background-color: rgb(0, 59, 0);">
+      <a class="navbar-brand" href="#">
+        <img src="{% static 'images/rick.jpg' %}" class="rounded" width="70" height="70" alt="">
+      </a>
+      <div class="display-4">WorkMan Panel</div>
+      <form class="form-inline">
+        <a href="{% url 'middleman:logout' %}" class="btn btn-outline-success my-2 my-sm-0 me-3">Logout</a>
+      </form>
+    </nav>
+    <div class="container-sm my-5">
+    <div class="container">
+      <div class="row">
+          <div class="col-md-offset-1 col-md-10">
+              <div class="panel">
+                  <div class="panel-heading">
+                      <div class="row">
+                          <div class="col col-sm-3 col-xs-12">
+                              <h4 class="title">Data <span>List</span></h4>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="panel-body table-responsive">
+                      <table class="table">
+                          <thead>
+                              <tr>
+                                <th>Address</th>
+                                <th>Image</th>
+                                <th>Location On Map</th>
+                                <th>Action</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                            {% for data in progress_data %}
+                            <tr>
+                              <td>{{ data.address }}</td>
+                              <td>
+                                <img
+                                  src="{{ data.image.url }}"
+                                  alt="Image for {{ data.name }}"
+                                  class="img-fluid"
+                                  height="300px"
+                                  width="300px"
+                                  style="border-radius: 10px;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1)"
+                                />
+                              </td>
+                      
+                              <td>
+                                <div
+                                  class="map"
+                                  data-lat="{{ data.latitude }}"
+                                  data-lng="{{ data.longitude }}"
+                                  style="height: 250px; width: 350px; border-radius: 10px;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1)"
+                                ></div>
+                              </td>
+                              <td>
+                                  <a class="btn btn-info" href="{% url 'middleman:completed' data.id %}">Completed</a>
+                              </td>
+                            </tr>
+                            {% endfor %}
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOJwT5lifGcpiWXIzwrybVAYUwI0wMdgk&callback=initMap&v=weekly"
+      defer
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <script>
+      let map, infoWindow;
+
+      function initMap() {
+        // Iterate over all elements with the class 'map'
+        document.querySelectorAll(".map").forEach((mapElement) => {
+          const lat = parseFloat(mapElement.dataset.lat);
+          const lng = parseFloat(mapElement.dataset.lng);
+
+          const mapOptions = {
+            center: { lat, lng },
+            zoom: 15,
+          };
+
+          // Create a new map instance for each map element
+          const map = new google.maps.Map(mapElement, mapOptions);
+
+          // Create a marker for each map
+          const marker = new google.maps.Marker({
+            position: { lat, lng },
+            map: map,
+            title: "Marker Title",
+          });
+        });
+      }
+
+      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(
+          browserHasGeolocation
+            ? "Error: The Geolocation service failed."
+            : "Error: Your browser doesn't support geolocation."
+        );
+        infoWindow.open(map);
+      }
+
+      window.initMap = initMap;
+    </script>
+    {%else%}
+<p class="display-3 text-white">You need to <a href="{% url 'middleman:login' %}">Login</a></p>
+{% endif %}
+  </body>
+</html>

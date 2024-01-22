@@ -1,0 +1,253 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'table.css' %}">
+</head>
+<body style="background-image: url('{% static 'images/plants2.jpg' %}');">
+    {% if user.is_authenticated %}
+
+      <nav class="navbar navbar-light bg-light  p-1 shadow" style="background-color: rgb(0, 59, 0);">
+          <img src="{% static 'images/rick.jpg' %}" class="rounded" width="70" height="70" alt="">
+
+        <div class="display-4">Admin Panel</div>
+
+        <form class="form-inline">
+            <a href="{% url 'middleman:logout' %}" class="btn btn-outline-success my-2 my-sm-0 me-3">Logout</a>
+            <a href="{% url 'middleman:add_workman' %}" class="btn btn-outline-success my-2 my-sm-0 me-3">Add WorkMan</a>
+        </form>
+      </nav>
+<div class="container-sm my-5 mb-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-offset-1 col-md-10">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col col-sm-3 col-xs-12">
+                                <h4 class="title">New <span>Reports</span></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Address</th>
+                                    <th>Image</th>
+                                    <th>Action#1</th>
+                                    <th>Action#2</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for data in entered_data %}
+                                <tr>
+                                    <td>{{ data.name }}</td>
+                                    <td>{{ data.address }}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#imageModal{{ data.id }}">
+                                            View Image
+                                        </button>
+                                        <div class="modal fade" id="imageModal{{ data.id }}" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="imageModalLabel">Image for {{ data.name }}</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <img src="{{ data.image.url }}" alt="Image for {{ data.name }}" class="img-fluid">
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="{% url 'middleman:proceed' data.id %}" class="btn btn-success">Proceed</a>
+                                    </td>
+                                    <td><button type="button" class="btn btn-danger">Reject</button></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-sm my-5">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-offset-1 col-md-10">
+            <div class="panel">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col col-sm-3 col-xs-12">
+                            <h4 class="title">On <span>Progress</span></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Address</th>
+                                <th>Image</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for data in progress_data %}
+                            <tr>
+                                <td>{{ data.name }}</td>
+                                <td>{{ data.address }}</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#imageModal{{ data.id }}">
+                                        View Image
+                                    </button>
+                                    <div class="modal fade" id="imageModal{{ data.id }}" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="imageModalLabel">Image for {{ data.name }}</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <img src="{{ data.image.url }}" alt="Image for {{ data.name }}" class="img-fluid">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div class="container-sm my-5">
+
+<div class="container mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-offset-1 col-md-10">
+            <div class="panel">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col col-sm-3 col-xs-12">
+                            <h4 class="title">Completed <span></span></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Before</th>
+                                <th>After</th>
+                                <th>Action#1</th>
+                                <th>Action#2</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for data in complete_data %}
+                            <tr>
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#beforeImageModal{{ data.sent_id }}">
+                                        View Before Image
+                                    </button>
+                                    <div class="modal fade" id="beforeImageModal{{ data.sent_id }}" tabindex="-1" role="dialog" aria-labelledby="beforeImageModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="beforeImageModalLabel">Before Image for ID: {{ data.sent_id }}</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    {% with before_image_id=data.sent_id %}
+                                                        {% for pre_complete_item in pre_complete %}
+                                                            {% if pre_complete_item.id == before_image_id %}
+                                                                <img src="{{ pre_complete_item.image.url }}" alt="Before Image" class="img-fluid">
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#afterImageModal{{ data.sent_id }}">
+                                        View After Image
+                                    </button>
+                                    <div class="modal fade" id="afterImageModal{{ data.sent_id }}" tabindex="-1" role="dialog" aria-labelledby="afterImageModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="afterImageModalLabel">After Image for ID: {{ data.sent_id }}</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <img src="{{ data.image.url }}" alt="After Image" class="img-fluid">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                <a class="btn btn-success" href="{% url 'middleman:deleting' data.id %}">Completed</a>
+                        </td>
+                                <td><button type="button" class="btn btn-danger">Reject</button></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+{%else%}
+<p class="display-3 text-white">You need to <a href="{% url 'middleman:login' %}">Login</a></p>
+{% endif %}
+    
+</body>
+</html>
+
+
