@@ -1,8 +1,8 @@
-#Project in brief
+# Project in brief
 
-###Simple Django Project that helps citizens submit pics of polluted areas and the appropriate authorities can fix it.
+### Simple Django Project that helps citizens submit pics of polluted areas and the appropriate authorities can fix it.
 
-##Technologies Used
+## Technologies Used
 
 - Django
 - Sqlite
@@ -10,7 +10,7 @@
 - CSS
 - Bootstrap 5
 
-##How do I get set up locally?
+## How do I get set up locally?
 
 - Set up venv
   
