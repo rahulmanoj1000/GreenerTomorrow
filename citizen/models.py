@@ -4,7 +4,7 @@ from django.db import models
 class CitizenInput(models.Model):
     name = models.TextField(max_length=255)
     email = models.EmailField()
-    image = models.ImageField()
+    image = models.ImageField(upload_to='images/')
     address = models.TextField(null=False)
     latitude = models.FloatField()
     longitude = models.FloatField()

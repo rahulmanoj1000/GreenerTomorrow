@@ -11,5 +11,4 @@ urlpatterns = [
     path('workman_panel/',views.workman_panel,name="workman_panel"),
     path('completed/<int:citizen_id>/',views.completed,name="completed"),
     path('deleting/<int:id>/', views.deleting, name='deleting'),
-    
 ]

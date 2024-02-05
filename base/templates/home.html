@@ -69,7 +69,7 @@
     </div>
   </div>
 
-  <div class="d-flex justify-content-end mt-3 me-5">
+  <!-- <div class="d-flex justify-content-end mt-3 me-5">
     <div class="m-4 col-md-4 text-center mx-auto" style="height: 450px ;width:450px; background-color:wheat; border:4px solid #c95018;">
       <h3 class="text-black mb-3 mt-3" style="font-family:  Lemon;">About Us</h3>
       <p class="lead">Empowering communities through sustainable waste solutions, our non-profit waste management organization is dedicated to environmental stewardship.
@@ -77,8 +77,9 @@
         Through educational programs, we aim to instill environmental consciousness, champion a circular economy, preserve natural resources, and build resilient communities. 
         Join us in the journey towards a greener, more sustainable world for generations to come.</p>
     </div>
+
     <div class="row d-flex align-items-stretch">
-      <div class="m-4 col-md-4 ml-0" style="height: 450px; width: 450px; background-color: white; border:4px solid #c95018;">
+      <div class="m-4 col-md-4 ml-0" style="height: 450px; width: 300px; background-color: white; border:4px solid #c95018;">
         <img class="card-img-top p-2 mt-1 rounded border-secondary" src="{% static 'images/Morty.jpg' %}"
           alt="Card image cap" style="height: 200px; object-fit: cover;">
         <div class="card-body">
@@ -86,9 +87,38 @@
           <p class="card-text">Head to the citizens tab where info with regards to pollution can</p>
           <a href="{% url 'citizen:citizen_home' %}" class="btn btn-primary shadow">Citizens Tab</a>
         </div>
-
       </div>
+
       <div class="card m-4 col-md-4 shadow" style="width: 300px; height: 450px; border:4px solid #c95018;">
+        <img class="card-img-top p-2 mt-1 rounded border-secondary" src="{% static 'images/rick.jpg' %}"
+          alt="Card image cap" style="height: 200px; object-fit: cover;">
+        <div class="card-body">
+          <h5 class="card-title border border-danger p-2 shadow-sm rounded">Admin</h5>
+          <p class="card-text">Head to the Administration tab where actions can be performed</p>
+          <a href="{% url 'middleman:login' %}" class="btn btn-success shadow">Admin Tab</a>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <div class="row">
+    <div class="m-4 col-md-4 text-center mx-auto" style="height: auto ;width:450px; background-color:wheat; border:4px solid #c95018;">
+      <h3 class="text-black mb-3 mt-3" style="font-family:  Lemon;">About Us</h3>
+      <p class="lead">Empowering communities through sustainable waste solutions, our non-profit waste management organization is dedicated to environmental stewardship.
+         We actively engage in collaborative partnerships, leverage advanced technologies, and foster recycling initiatives. 
+        Through educational programs, we aim to instill environmental consciousness, champion a circular economy, preserve natural resources, and build resilient communities. 
+        Join us in the journey towards a greener, more sustainable world for generations to come.</p>
+    </div>
+    <div class="col-sm-6 d-flex justify-content-center">
+      <div class="col-sm-3 m-4" style="height: auto; width: auto; background-color: white; border:4px solid #c95018;">
+        <img class="card-img-top p-2 mt-1 rounded border-secondary" src="{% static 'images/Morty.jpg' %}"
+          alt="Card image cap" style="height: 200px; object-fit: cover;">
+        <div class="card-body">
+          <h5 class="card-title border border-warning p-2 shadow-sm rounded">Citizen</h5>
+          <p class="card-text">Head to the citizens tab where info with regards to pollution can</p>
+          <a href="{% url 'citizen:citizen_home' %}" class="btn btn-primary shadow">Citizens Tab</a>
+        </div>
+      </div>
+      <div class="col-sm-3 m-4" style="height: auto; width: auto; background-color: white; border:4px solid #c95018;">
         <img class="card-img-top p-2 mt-1 rounded border-secondary" src="{% static 'images/rick.jpg' %}"
           alt="Card image cap" style="height: 200px; object-fit: cover;">
         <div class="card-body">
