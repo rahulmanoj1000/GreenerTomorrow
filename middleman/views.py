@@ -122,8 +122,8 @@ def deleting(request, id):                  #This clears the data from the db an
         mail = EmailMessage(
         'Pollution Report',
         f'The location you reported on {pre_complete.input_date} with regards to pollution/littering has been cleared. A picture post-clearance has been attached for your reference. Please feel free to drop a review at http://127.0.0.1:8000/rating/ratings/', #change if not local host
-        'rahulmanoj1000@gmail.com',  # Sender's email address
-        [pre_complete.email, 'rahulmanoj1200@gmail.com'],  # Recipient list
+        'youremail@email.com',  # Sender's email address
+        [pre_complete.email],  # Recipient list
         )
         image_path = os.path.join(settings.BASE_DIR, 'media', complete_data.image.name)
         mail.attach_file(image_path, mimetype='image/jpeg')

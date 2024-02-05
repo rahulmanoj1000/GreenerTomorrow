@@ -135,9 +135,9 @@ USE_TZ = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'rahulmanoj1000@gmail.com'
-EMAIL_HOST_PASSWORD = 'ejlv mtzn vsxt qtqg'
+EMAIL_PORT = 587 ##get this from email
+EMAIL_HOST_USER = 'youremail@email.com'
+EMAIL_HOST_PASSWORD = 'ejlv mtzn vsxt qtqg' ###get this from email
 EMAIL_USE_TLS = True
 
 
