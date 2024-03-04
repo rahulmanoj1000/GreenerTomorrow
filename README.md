@@ -9,7 +9,7 @@
 - Users can submit pollution incidents by uploading images and providing optional details.
 - The system detects the user's current location using the Google Maps API.
   
-###Admin Management:
+### Admin Management:
 
 - Admins receive reported incidents and can assign them to appropriate service providers.
 - Admins have the option to add new service providers to the system.
