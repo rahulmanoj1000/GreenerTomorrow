@@ -1,6 +1,28 @@
 # Project in brief
 
-### Simple Django Project that helps citizens submit pics of polluted areas and the appropriate authorities can fix it.
+### Simple Django Project that helps users submit pics of polluted areas and the appropriate service provider can fix it.
+
+## Key Features:
+
+### User Reporting:
+
+- Users can submit pollution incidents by uploading images and providing optional details.
+- The system detects the user's current location using the Google Maps API.
+  
+###Admin Management:
+
+- Admins receive reported incidents and can assign them to appropriate service providers.
+- Admins have the option to add new service providers to the system.
+
+### Service Provider Interaction:
+
+- Assigned service providers receive notifications of reported incidents.
+- Service providers can view details of assigned tasks and mark them as complete by uploading images of the remediated area.
+
+### Approval and Notification:
+
+- Admins verify completed tasks and approve them.
+- Users receive email notifications upon task approval, informing them of the completed remediation work.
 
 ## Technologies Used
 
